@@ -1,0 +1,29 @@
+{
+  "version": 2,
+  "builds": [{ "src": "next.config.js", "use": "@vercel/next" }],
+  "rewrites": [
+    { "source": "/api/:path*", "destination": "/api/:path*" },
+    { "source": "/:path*", "destination": "/:path*" }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "/api/$1",
+      "headers": {
+        "Cache-Control": "no-store"
+      }
+    }
+  ],
+  "functions": {
+    "api/**/*.js": {
+      "memory": 512,
+      "maxDuration": 10,
+      "runtime": "nodejs18.x"
+    },
+    "api/**/*.ts": {
+      "memory": 512,
+      "maxDuration": 10,
+      "runtime": "nodejs18.x"
+    }
+  }
+}
