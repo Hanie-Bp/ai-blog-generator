@@ -19,12 +19,12 @@
     "api/**/*.js": {
       "memory": 512,
       "maxDuration": 10,
-      "runtime": "nodejs18.x"
+      "runtime": "vercel-nodejs@18"
     },
     "api/**/*.ts": {
       "memory": 512,
       "maxDuration": 10,
-      "runtime": "nodejs18.x"
+      "runtime": "vercel-nodejs@18"
     }
   }
 }
