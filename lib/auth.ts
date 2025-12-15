@@ -1,7 +1,8 @@
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { prisma } from "./prisma";
-import bcrypt from "bcrypt";
+// Use a pure JS bcrypt implementation to avoid native build issues on Vercel
+import bcrypt from "bcryptjs";
 
 export const authOptions = {
   // Require explicit secret in production (Vercel) to avoid runtime 500s
