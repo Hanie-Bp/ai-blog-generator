@@ -2,11 +2,13 @@ import { NextRequest, NextResponse } from "next/server";
 import { getToken } from "next-auth/jwt";
 import { prisma } from "@/lib/prisma";
 
+// This handler relies on request data, so prevent static optimization
+export const dynamic = "force-dynamic";
+
 // GET /api/posts/ratings?postId=... - Get ratings for a post
 export async function GET(request: NextRequest) {
   try {
-    const { searchParams } = new URL(request.url, "http://localhost");
-    const postId = searchParams.get("postId");
+    const postId = request.nextUrl.searchParams.get("postId");
     if (!postId) {
       return NextResponse.json(
         { error: "postId is required" },
