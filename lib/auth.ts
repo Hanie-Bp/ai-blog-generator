@@ -4,6 +4,8 @@ import { prisma } from "./prisma";
 import bcrypt from "bcrypt";
 
 export const authOptions = {
+  // Require explicit secret in production (Vercel) to avoid runtime 500s
+  secret: process.env.NEXTAUTH_SECRET,
   adapter: PrismaAdapter(prisma),
   providers: [
     CredentialsProvider({
